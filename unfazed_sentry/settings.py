@@ -9,12 +9,12 @@ class UnfazedSentrySettings(BaseModel):
     )
     dsn: str = Field(..., description="The DSN of the Sentry instance", alias="DSN")
     max_breadcrumbs: int = Field(
-        ...,
+        2,
         description="The maximum number of breadcrumbs to store",
         alias="MAX_BREADCRUMBS",
     )
     debug: bool = Field(
-        ..., description="Whether to enable debug mode", alias="DEBUG", default=False
+        False, description="Whether to enable debug mode", alias="DEBUG"
     )
     environment: str = Field(
         "production",
@@ -24,8 +24,8 @@ class UnfazedSentrySettings(BaseModel):
     sample_rate: float = Field(
         1.0, description="The sample rate of the Sentry instance", alias="SAMPLE_RATE"
     )
-    ignore_errors: t.Optional[t.List[str]] = Field(
-        None, description="The errors to ignore", alias="IGNORE_ERRORS"
+    ignore_errors: t.Sequence[str | type] = Field(
+        [], description="The errors to ignore", alias="IGNORE_ERRORS"
     )
     server_name: t.Optional[str] = Field(
         None, description="The name of the server", alias="SERVER_NAME"

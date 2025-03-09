@@ -10,7 +10,7 @@ from .settings import UnfazedSentrySettings
 class UnfazedSentry:
     scope_handlers: t.List[t.Callable[[sentry_sdk.Scope], None]] = []
 
-    def setup(self):
+    def setup(self) -> None:
         sentry_settings: UnfazedSentrySettings = settings["UNFAZED_SENTRY_SETTINGS"]
         sentry_sdk.init(
             dsn=sentry_settings.dsn,
@@ -25,11 +25,16 @@ class UnfazedSentry:
         ]
         self.scope_handlers = handlers
 
-    def capture_exception(self, exception: Exception):
+    def capture_exception(self, exception: Exception, **kwargs: t.Any) -> None:
+        if hasattr(exception, "should_capture") and not exception.should_capture:
+            return
+
+        # TODO
+        # push_scope is deprecated in next version
         with sentry_sdk.push_scope() as scope:
             for handler in self.scope_handlers:
-                handler(scope)
+                handler(scope, **kwargs)
             sentry_sdk.capture_exception(exception)
 
 
-agent = UnfazedSentry()
+agent: UnfazedSentry = UnfazedSentry()
