@@ -2,7 +2,7 @@ name: Test Unfazed Prometheus
 
 on:
   push:
-    branches: ["main", "dev_doc_and_workflows"]
+    branches: ["main"]
   pull_request:
     branches: ["main"]
 
