@@ -1,6 +1,6 @@
 [project]
 name = "unfazed-sentry"
-version = "0.0.1"
+version = "0.0.2"
 description = "Sentry client for Unfazed"
 readme = "README.md"
 dependencies = [
