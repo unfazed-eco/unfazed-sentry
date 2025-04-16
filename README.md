@@ -27,7 +27,6 @@ UNFAZED_SENTRY_SETTINGS = {
     "DSN": "https://public@sentry.example.com/1",
     "ENVIRONMENT": "test",
     "SAMPLE_RATE": 1.0,
-    "CLIENT_CLASS": "unfazed_sentry.settings.UnfazedSentrySettings",
     
 }
 
