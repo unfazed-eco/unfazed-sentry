@@ -5,7 +5,7 @@ description = "Sentry client for Unfazed"
 readme = "README.md"
 dependencies = [
     "sentry-sdk>=2.22.0",
-    "unfazed>=0.0.6",
+    "unfazed>=0.0.7",
 ]
 
 

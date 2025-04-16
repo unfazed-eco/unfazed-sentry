@@ -1,8 +1,10 @@
 import typing as t
 
 from pydantic import BaseModel, Field
+from unfazed.conf import register_settings
 
 
+@register_settings("UNFAZED_SENTRY_SETTINGS")
 class UnfazedSentrySettings(BaseModel):
     scope_handlers: t.List[str] = Field(
         [], description="The scope handlers", alias="SCOPE_HANDLERS"
